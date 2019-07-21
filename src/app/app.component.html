@@ -1,20 +1,75 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
-    Welcome to {{ title }}!
+    Welcome to Body Fat Calculator!
   </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
+<div>
+  <input
+    style="display: none"
+    type="file"
+    (change)="uploadFile($event)"
+    #fileInput
+  />
+  <button mat-stroked-button (click)="fileInput.click()">Upload Data</button>
+  <button mat-stroked-button color="primary" (click)="downloadFile(userData)">
+    Download Data
+  </button>
+</div>
+
+<div>
+  <form [formGroup]="form">
+    <label>
+      Chest:
+      <input type="number" formControlName="chest" />
+    </label>
+    <label>
+      Abdominal:
+      <input type="number" formControlName="abdominal" />
+    </label>
+
+    <label>
+      Thigh:
+      <input type="number" formControlName="thigh" />
+    </label>
+
+    <label>
+      Weight:
+      <input type="number" formControlName="weight" />
+    </label>
+
+    <label>
+      Age:
+      <input type="number" formControlName="age" />
+    </label>
+
+    <button mat-stroked-button color="warn" (click)="calculateValues()">
+      Calculate values
+    </button>
+    <button mat-stroked-button color="warn" (click)="addValues()">
+      Add to Statistics
+    </button>
+  </form>
+
+  <div *ngIf="calculatedValues">
+    <h6>
+      Calculated body fat percentage: {{ calculatedValues.bodyFatPercentage }}
+    </h6>
+    <h6>Calculated lean body mass: {{ calculatedValues.leanBodyMass }}</h6>
+    <h6>Calculated body fat: {{ calculatedValues.bodyFat }}</h6>
+  </div>
+
+  <lib-highcharts-angular 
+  *ngIf="userData.length"
+  [Highcharts]="Highcharts"
+ 
+  [constructorType]="chartConstructor"
+  [options]="chartOptions"
+ 
+  [(update)]="updateFlag"
+  [oneToOne]="oneToOneFlag"
+ 
+  style="width: 100%; height: 400px; display: block;"
+></lib-highcharts-angular>
+</div>
