@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
 
   chartOptions = {
     chart: {
-      // type: 'line',
       zoomType: 'x'
     },
     credits: {
@@ -49,27 +48,13 @@ export class AppComponent implements OnInit {
         format: '{value} kg'
       }
     }],
-    // legend: {
-    //   layout: 'vertical',
-    //   align: 'right',
-    //   verticalAlign: 'middle'
-    // },
+    tooltip: { },
     plotOptions: {
       series: {
       }
     },
     series: []
-    //  [{
-    //   name: 'Installation',
-    //   data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175],
-    //   yAxis: 0,
-    // }, {
-    //   name: 'Manufacturing',
-    //   data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434],
-    //   yAxis: 1,
-    // }]
   };
-
 
   form = new FormGroup({
     chest: new FormControl(null),
@@ -90,7 +75,6 @@ export class AppComponent implements OnInit {
     fileReader.onload = () => {
       const parsedData = JSON.parse(fileReader.result as string);
       this.userData = parsedData;
-      console.log(this.userData);
       this.showChart();
       this.updateFlag = true;
     };
@@ -123,7 +107,6 @@ export class AppComponent implements OnInit {
 
   calculateValues() {
     const values = this.form.value;
-    console.log(values);
     const bodyDensity = this.calculateBodyDensity(values.chest, values.abdominal, values.thigh, values.age);
     const bodyFatPercentage = this.calculateBodyFatPercentage(bodyDensity);
     const calculatedValues: StatisticsData = {
