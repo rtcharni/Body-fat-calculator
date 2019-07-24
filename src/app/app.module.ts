@@ -6,6 +6,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import { AngularHighchartsChartModule } from 'angular-highcharts-chart';
+import {MatIconModule} from '@angular/material/icon';
 
 import { AppComponent } from './app.component';
 
@@ -20,7 +21,8 @@ import { AppComponent } from './app.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    AngularHighchartsChartModule
+    AngularHighchartsChartModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

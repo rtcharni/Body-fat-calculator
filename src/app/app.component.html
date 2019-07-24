@@ -1,75 +1,101 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to Body Fat Calculator!
-  </h1>
+<div class="welcome-body-fat-calculator">
+  <h1 class="welcome">Welcome To</h1>
+  <h3 class="body-fat-calculator">Body-Fat-Calculator</h3>
 </div>
 
-<div>
+<div class="container content">
   <input
     style="display: none"
     type="file"
     (change)="uploadFile($event)"
     #fileInput
   />
-  <button mat-stroked-button (click)="fileInput.click()">Upload Data</button>
-  <button mat-stroked-button color="primary" (click)="downloadFile(userData)">
+  <!-- <button mat-stroked-button color="accent" (click)="fileInput.click()">Upload Data</button>
+  <button mat-stroked-button color="warn" (click)="downloadFile(userData)">
     Download Data
+  </button> -->
+
+  <button
+    type="button"
+    class="btn btn-outline-danger"
+    (click)="fileInput.click()"
+  >
+    Upload Data
   </button>
-</div>
+  <button
+    type="button"
+    class="btn btn-outline-info buttonToRight"
+    (click)="calculateValues()"
+  >
+    Calculate values
+  </button>
 
-<div>
-  <form [formGroup]="form">
-    <label>
-      Chest:
-      <input type="number" formControlName="chest" />
-    </label>
-    <label>
-      Abdominal:
-      <input type="number" formControlName="abdominal" />
-    </label>
+  <div>
+    <form [formGroup]="form" class="form">
 
-    <label>
-      Thigh:
-      <input type="number" formControlName="thigh" />
-    </label>
+      <mat-form-field appearance="outline">
+        <mat-label>Chest:</mat-label>
+        <input required matInput type="number" formControlName="chest" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <!-- <mat-hint>Hint</mat-hint> -->
+      </mat-form-field>
 
-    <label>
-      Weight:
-      <input type="number" formControlName="weight" />
-    </label>
+      <mat-form-field appearance="outline">
+        <mat-label>Abdominal:</mat-label>
+        <input required matInput type="number" formControlName="abdominal" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <!-- <mat-hint>Hint</mat-hint> -->
+      </mat-form-field>
 
-    <label>
-      Age:
-      <input type="number" formControlName="age" />
-    </label>
+      <mat-form-field appearance="outline">
+        <mat-label>Thigh:</mat-label>
+        <input required matInput type="number" formControlName="thigh" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <!-- <mat-hint>Hint</mat-hint> -->
+      </mat-form-field>
 
-    <button mat-stroked-button color="warn" (click)="calculateValues()">
-      Calculate values
-    </button>
-    <button mat-stroked-button color="warn" (click)="addValues()">
-      Add to Statistics
-    </button>
-  </form>
+      <mat-form-field appearance="outline">
+        <mat-label>Weight:</mat-label>
+        <input required matInput type="number" formControlName="weight" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <!-- <mat-hint>Hint</mat-hint> -->
+      </mat-form-field>
 
-  <div *ngIf="calculatedValues">
-    <h6>
-      Calculated body fat percentage: {{ calculatedValues.bodyFatPercentage }}
-    </h6>
-    <h6>Calculated lean body mass: {{ calculatedValues.leanBodyMass }}</h6>
-    <h6>Calculated body fat: {{ calculatedValues.bodyFat }}</h6>
+      <mat-form-field appearance="outline">
+        <mat-label>Age:</mat-label>
+        <input required matInput type="number" formControlName="age" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <!-- <mat-hint>Hint</mat-hint> -->
+      </mat-form-field>
+
+      <button (click)="downloadFile(userData)" type="button" class="btn btn-outline-secondary">Download Data</button>
+      <button (click)="addValues()" type="button" class="btn btn-outline-success buttonToRight">Add to Statistics</button>
+
+
+      <!-- <button mat-stroked-button color="warn" (click)="calculateValues()">
+        Calculate values
+      </button>
+      <button mat-stroked-button color="warn" (click)="addValues()">
+        Add to Statistics
+      </button> -->
+    </form>
+
+    <div *ngIf="calculatedValues">
+      <h6>
+        Calculated body fat percentage: {{ calculatedValues.bodyFatPercentage }}
+      </h6>
+      <h6>Calculated lean body mass: {{ calculatedValues.leanBodyMass }}</h6>
+      <h6>Calculated body fat: {{ calculatedValues.bodyFat }}</h6>
+    </div>
+
+    <lib-highcharts-angular
+      *ngIf="userData.length"
+      [Highcharts]="Highcharts"
+      [constructorType]="chartConstructor"
+      [options]="chartOptions"
+      [(update)]="updateFlag"
+      [oneToOne]="oneToOneFlag"
+      style="width: 100%; height: 400px; display: block;"
+    ></lib-highcharts-angular>
   </div>
-
-  <lib-highcharts-angular 
-  *ngIf="userData.length"
-  [Highcharts]="Highcharts"
- 
-  [constructorType]="chartConstructor"
-  [options]="chartOptions"
- 
-  [(update)]="updateFlag"
-  [oneToOne]="oneToOneFlag"
- 
-  style="width: 100%; height: 400px; display: block;"
-></lib-highcharts-angular>
 </div>

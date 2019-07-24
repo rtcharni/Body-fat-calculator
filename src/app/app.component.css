@@ -1,1 +1,81 @@
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+.buttonToRight {
+  float: right;
+}
+
+.content {
+  margin-top: 16%;
+}
+
+mat-form-field {
+  max-width: 222px;
+}
+
+.form {
+  margin-top: 10px;
+}
+
+.welcome-body-fat-calculator {
+  position: relative;
+}
+
+.welcome {
+  position: relative;
+  font-family: "Candal", sans-serif;
+  font-size: 180px;
+  font-style: italic;
+  -webkit-text-stroke: 0.1px #ed2121;
+  color: #fff;
+  text-shadow: -10px 10px 0px #ed2121;
+  margin: 0;
+}
+
+.windows .welcome {
+  -webkit-text-stroke: 4px #ed2121;
+}
+
+.welcome:before {
+  content: "";
+  position: absolute;
+  height: 4px;
+  width: 665px;
+  top: 83px;
+  left: 48px;
+  background: #ed2121;
+  box-shadow: -8px 13px #ed2121;
+}
+
+.windows .welcome:before {
+  left: 55px;
+  width: 659px;
+}
+
+.welcome:after {
+  content: "";
+  position: absolute;
+  height: 4px;
+  width: 639px;
+  top: 109px;
+  left: 36px;
+  background: #ed2121;
+  box-shadow: -4px 13px #ed2121;
+}
+
+.body-fat-calculator {
+  position: absolute;
+  left: 50px;
+  top: 350px;
+  font-family: "Mr Dafoe", cursive;
+  font-size: 130px;
+  transform: rotate(-15deg);
+  -ms-transform: rotate(-15deg); /* IE 9 */
+  -webkit-transform: rotate(-15deg); /* Safari and Chrome */
+  color: #ed2121;
+  margin: 0;
+  margin-top: -160px;
+  padding-left: 430px;
+  text-shadow: 1px 2px 0px #f9d2d2;
+}
+
+.windows .body-fat-calculator {
+  margin-top: -200px;
+}
