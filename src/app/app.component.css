@@ -7,11 +7,20 @@
 }
 
 mat-form-field {
-  max-width: 222px;
+  width: calc(100% / 5);
 }
 
 .form {
   margin-top: 10px;
+}
+
+.downButtons {
+  margin-top: 6px;
+}
+
+.divCalculatedValues {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .welcome-body-fat-calculator {
