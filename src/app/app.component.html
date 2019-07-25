@@ -30,46 +30,46 @@
   <div>
     <form [formGroup]="form" class="form">
       <mat-form-field appearance="outline">
-        <mat-label>Chest:</mat-label>
+        <mat-label>Chest (mm):</mat-label>
         <input matInput type="number" formControlName="chest" />
         <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-        <mat-hint *ngIf="form.controls.chest.status === 'INVALID'"
+        <mat-hint *ngIf="form.controls.chest.status === 'INVALID' && form.controls.chest.touched"
           >Positive number required</mat-hint
         >
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Abdominal:</mat-label>
+        <mat-label>Abdominal (mm):</mat-label>
         <input matInput type="number" formControlName="abdominal" />
         <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-        <mat-hint *ngIf="form.controls.abdominal.status === 'INVALID'"
+        <mat-hint *ngIf="form.controls.abdominal.status === 'INVALID' && form.controls.abdominal.touched"
           >Positive number required</mat-hint
         >
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Thigh:</mat-label>
+        <mat-label>Thigh (mm):</mat-label>
         <input matInput type="number" formControlName="thigh" />
         <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-        <mat-hint *ngIf="form.controls.thigh.status === 'INVALID'"
+        <mat-hint *ngIf="form.controls.thigh.status === 'INVALID' && form.controls.thigh.touched"
           >Positive number required</mat-hint
         >
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Weight:</mat-label>
+        <mat-label>Weight (mm):</mat-label>
         <input matInput type="number" formControlName="weight" />
         <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-        <mat-hint *ngIf="form.controls.weight.status === 'INVALID'"
+        <mat-hint *ngIf="form.controls.weight.status === 'INVALID' && form.controls.weight.touched"
           >Positive number required</mat-hint
         >
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Age:</mat-label>
+        <mat-label>Age (mm):</mat-label>
         <input matInput type="number" formControlName="age" />
         <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-        <mat-hint *ngIf="form.controls.age.status === 'INVALID'"
+        <mat-hint *ngIf="form.controls.age.status === 'INVALID' && form.controls.age.touched"
           >Positive number required</mat-hint
         >
       </mat-form-field>

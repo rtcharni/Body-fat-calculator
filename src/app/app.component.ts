@@ -65,11 +65,11 @@ export class AppComponent implements OnInit {
   };
 
   form = new FormGroup({
-    chest: new FormControl(null, [Validators.required, Validators.min(0)]),
-    abdominal: new FormControl(null, [Validators.required, Validators.min(0)]),
-    thigh: new FormControl(null, [Validators.required, Validators.min(0)]),
-    age: new FormControl(null, [Validators.required, Validators.min(0)]),
-    weight: new FormControl(null, [Validators.required, Validators.min(0)]),
+    chest: new FormControl(null, [Validators.required, Validators.min(0.01)]),
+    abdominal: new FormControl(null, [Validators.required, Validators.min(0.01)]),
+    thigh: new FormControl(null, [Validators.required, Validators.min(0.01)]),
+    age: new FormControl(null, [Validators.required, Validators.min(0.01)]),
+    weight: new FormControl(null, [Validators.required, Validators.min(0.01)]),
   });
 
   calculatedValues: StatisticsData;
