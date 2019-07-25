@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as Highcharts from 'highcharts';
 
 @Component({
@@ -57,11 +57,11 @@ export class AppComponent implements OnInit {
   };
 
   form = new FormGroup({
-    chest: new FormControl(null),
-    abdominal: new FormControl(null),
-    thigh: new FormControl(null),
-    age: new FormControl(null),
-    weight: new FormControl(null),
+    chest: new FormControl(null, [Validators.required, Validators.min(0)]),
+    abdominal: new FormControl(null, [Validators.required, Validators.min(0)]),
+    thigh: new FormControl(null, [Validators.required, Validators.min(0)]),
+    age: new FormControl(null, [Validators.required, Validators.min(0)]),
+    weight: new FormControl(null, [Validators.required, Validators.min(0)]),
   });
 
   calculatedValues: StatisticsData;
@@ -106,6 +106,7 @@ export class AppComponent implements OnInit {
   }
 
   calculateValues() {
+    console.log(this.form);
     const values = this.form.value;
     const bodyDensity = this.calculateBodyDensity(values.chest, values.abdominal, values.thigh, values.age);
     const bodyFatPercentage = this.calculateBodyFatPercentage(bodyDensity);
@@ -119,9 +120,10 @@ export class AppComponent implements OnInit {
 
   addValues() {
     if (this.calculatedValues) {
-      this.userData.push(this.calculatedValues);
+      this.userData.push({...this.calculatedValues});
       this.form.reset();
       this.showChart();
+      this.calculatedValues = null;
       this.updateFlag = true;
     }
   }
