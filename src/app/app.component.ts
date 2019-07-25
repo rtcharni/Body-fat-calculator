@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as Highcharts from 'highcharts';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -71,19 +72,69 @@ export class AppComponent implements OnInit {
 
   calculatedValues: StatisticsData;
 
+  constructor(private snackBar: MatSnackBar) { }
+
   ngOnInit() { }
 
   uploadFile(event: any) {
+    console.log('start');
+    if (!event.target.files.length) {
+      return;
+    } else if (event.target.files.length && event.target.files[0].type !== 'application/json') {
+      this.snackBar.open(`Impossible! I need .json file..`, 'Roger', {
+        duration: 4000,
+      });
+      return;
+    }
+
     this.selectedFile = event.target.files[0];
+    console.log(event);
     const fileReader = new FileReader();
-    fileReader.readAsText(this.selectedFile, 'UTF-8');
-    fileReader.onload = () => {
-      const parsedData = JSON.parse(fileReader.result as string);
-      this.userData = parsedData;
-      this.showChart();
-      this.updateFlag = true;
-    };
+    try {
+      fileReader.readAsText(this.selectedFile, 'UTF-8');
+      fileReader.onload = () => {
+        try {
+          const parsedData = JSON.parse(fileReader.result as string);
+          this.userData = parsedData;
+          this.showChart();
+          this.updateFlag = true;
+        } catch (error) {
+          console.log(error);
+          this.snackBar.open(`Something is wrong with the file..`, ':/', {
+            duration: 4000,
+          });
+        }
+      };
+    } catch (error) {
+      console.log(error);
+      this.snackBar.open(`Something is wrong with the file..`, ':/', {
+        duration: 4000,
+      });
+    }
+    this.selectedFile = null;
+    fileReader.abort();
+    return;
+    // fileReader.readAsText(this.selectedFile, 'UTF-8');
+    // fileReader.onload = () => {
+    // try {
+    //   console.log('trying');
+    //   const parsedData = JSON.parse(fileReader.result as string);
+    //   this.userData = parsedData;
+    //   this.showChart();
+    //   this.updateFlag = true;
+    // } catch (error) {
+    //   console.log(error);
+    //   this.snackBar.open(`Something is wrong with the file..`, ':/', {
+    //     duration: 4000,
+    //   });
+    // }
+    // };
+
+
     fileReader.onerror = (error) => {
+      this.snackBar.open(`Sorry! I'm having system problems..`, ':(', {
+        duration: 4000,
+      });
       console.log(error);
     };
   }
@@ -111,7 +162,6 @@ export class AppComponent implements OnInit {
   }
 
   calculateValues() {
-    console.log(this.form);
     const values = this.form.value;
     const bodyDensity = this.calculateBodyDensity(values.chest, values.abdominal, values.thigh, values.age);
     const bodyFatPercentage = this.calculateBodyFatPercentage(bodyDensity);
