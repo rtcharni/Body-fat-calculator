@@ -85,6 +85,7 @@ export class AppComponent implements OnInit {
       this.snackBar.open(`Impossible! I need .json file..`, 'Roger', {
         duration: 4000,
       });
+      this.myFileInput.nativeElement.value = '';
       return;
     }
 
