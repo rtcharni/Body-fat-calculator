@@ -101,21 +101,34 @@
     </form>
 
     <div *ngIf="calculatedValues" class="divCalculatedValues">
-      <h5>
-        Body fat percentage: <span class="badge badge-secondary">{{ calculatedValues.bodyFatPercentage.toFixed(2) }} %</span>
+      <h5 class="h5">
+        Body fat percentage:
+        <span class="badge badge-danger"
+          >{{ calculatedValues.bodyFatPercentage.toFixed(2) }} %</span
+        >
       </h5>
-      <h5>Lean body mass: <span class="badge badge-secondary">{{ calculatedValues.leanBodyMass.toFixed(2) }} kg</span> </h5>
-      <h5>Body fat: <span class="badge badge-secondary">{{ calculatedValues.bodyFat.toFixed(2) }} kg</span></h5>
+      <h5 class="text-muted">
+        Lean body mass:
+        <span class="badge badge-secondary"
+          >{{ calculatedValues.leanBodyMass.toFixed(2) }} kg</span
+        >
+      </h5>
+      <h5 class="text-muted">
+        Body fat:
+        <span class="badge badge-secondary"
+          >{{ calculatedValues.bodyFat.toFixed(2) }} kg</span
+        >
+      </h5>
     </div>
 
     <lib-highcharts-angular
       *ngIf="userData.length"
+      class="chart"
       [Highcharts]="Highcharts"
       [constructorType]="chartConstructor"
       [options]="chartOptions"
       [(update)]="updateFlag"
       [oneToOne]="oneToOneFlag"
-      style="width: 100%; height: 400px; display: block;"
     ></lib-highcharts-angular>
   </div>
 </div>
