@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'fat-body-calculator'`, () => {
+  it(`should have as title 'body-fat-calculator'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('fat-body-calculator');
+    expect(app.title).toEqual('body-fat-calculator');
   });
 
   it('should render title in a h1 tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to fat-body-calculator!');
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to body-fat-calculator!');
   });
 });
