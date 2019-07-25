@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
     tooltip: {
       formatter() {
         return `<span style="font-size: 12px;">${new Date(this.x).toLocaleDateString()}</span><br/>
-        <span style="font-size: 12px; color:${this.color}">${this.y.toFixed(2)} kg</span>`;
+        <span style="font-size: 12px;"><b>${this.y.toFixed(2)} kg</b></span>`;
       }
     },
     plotOptions: {
