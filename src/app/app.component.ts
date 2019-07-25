@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   updateFlag = false;
   oneToOneFlag = true;
 
-  chartOptions = {
+  chartOptions: Highcharts.Options = {
     chart: {
       zoomType: 'x'
     },
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
       enabled: false
     },
     title: {
-      text: 'Your Health Progress'
+      text: 'Your Progress'
     },
     subtitle: {
       text: 'PAIN IS GAIN!'
@@ -48,7 +48,12 @@ export class AppComponent implements OnInit {
         format: '{value} kg'
       }
     }],
-    tooltip: { },
+    tooltip: {
+      formatter() {
+        return `<span style="font-size: 12px;">${new Date(this.x).toLocaleDateString()}</span><br/>
+        <span style="font-size: 12px; color:${this.color}">${this.y.toFixed(2)} kg</span>`;
+      }
+    },
     plotOptions: {
       series: {
       }
@@ -120,7 +125,7 @@ export class AppComponent implements OnInit {
 
   addValues() {
     if (this.calculatedValues) {
-      this.userData.push({...this.calculatedValues});
+      this.userData.push({ ...this.calculatedValues });
       this.form.reset();
       this.showChart();
       this.calculatedValues = null;
@@ -137,7 +142,7 @@ export class AppComponent implements OnInit {
       )
       ),
       yAxis: 0,
-    });
+    } as any);
     this.chartOptions.series.push({
       name: 'Body Fat',
       data: this.userData.map(x => (
@@ -145,7 +150,7 @@ export class AppComponent implements OnInit {
       )
       ),
       yAxis: 1,
-    });
+    } as any);
   }
 
 }
