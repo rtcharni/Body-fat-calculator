@@ -53,8 +53,10 @@ export class AppComponent implements OnInit {
     }],
     tooltip: {
       formatter() {
+        // console.log(this);
+        const suffix = this.point.series.name === 'Body Fat %' ? '%' : 'kg';
         return `<span style="font-size: 12px;">${new Date(this.x).toLocaleDateString()}</span><br/>
-        <span style="font-size: 12px;"><b>${this.y.toFixed(2)} kg</b></span>`;
+        <span style="font-size: 12px;"><b>${this.y.toFixed(2)} ${suffix}</b></span>`;
       }
     },
     plotOptions: {
@@ -177,6 +179,16 @@ export class AppComponent implements OnInit {
       )
       ),
       yAxis: 1,
+      color: '#ff8000'
+    } as any);
+    this.chartOptions.series.push({
+      name: 'Body Fat %',
+      data: this.userData.map(x => (
+        [x.timestamp, x.bodyFatPercentage]
+      )
+      ),
+      yAxis: 1,
+      color: '#ff0000'
     } as any);
   }
 
