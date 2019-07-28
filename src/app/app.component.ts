@@ -120,7 +120,7 @@ export class AppComponent implements OnInit {
     const json = JSON.stringify(content);
     const element = document.createElement('a');
     element.setAttribute('href', 'data:text/json;charset=UTF-8,' + encodeURIComponent(json));
-    element.setAttribute('download', 'body-fat-calculator-statistics.json');
+    element.setAttribute('download', `body-fat-calculator-statistics-${new Date().toLocaleDateString()}.json`);
     element.style.display = 'none';
     document.body.appendChild(element);
     element.click();
