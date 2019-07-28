@@ -188,7 +188,7 @@ export class AppComponent implements OnInit {
       )
       ),
       yAxis: 1,
-      color: '#ff0000'
+      color: '#ed2121'
     } as any);
   }
 
